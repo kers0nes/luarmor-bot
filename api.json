@@ -1,0 +1,11 @@
+const express = require('express');
+const app = express();
+app.use(express.json());
+
+app.post('/verify', async (req, res) => {
+    const { key, hwid } = req.body;
+    const result = await bindHWID(key, hwid);
+    res.json(result);
+});
+
+app.listen(3000);
